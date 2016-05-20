@@ -1,5 +1,14 @@
 ---
 - hosts: localhost
   remote_user: root
+  connection: local
+  vars:
+    set_motd: False
+    users:
+      - name: testuser
+        password: $6$rounds=100000$/SK7so1fc7j96kpp$hGBMwK/.IWwpyLMCd94hVqVdbO78aooIEqWfNAfaTfF6QfM/.rcjC90twEHMSew7XV4EhS53j2PYsmKf.qjYl.
+        groups: wheel
+      - name: testuser2
+        password: $6$rounds=100000$/SK7so1fc7j96kpp$hGBMwK/.IWwpyLMCd94hVqVdbO78aooIEqWfNAfaTfF6QfM/.rcjC90twEHMSew7XV4EhS53j2PYsmKf.qjYl. 
   roles:
-    - ansible-opuk-common
+    - opuk.common
