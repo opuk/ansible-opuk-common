@@ -1,5 +1,11 @@
 ---
 - hosts: localhost
+  remote_user: root
   connection: local
+  vars:
+    users:
+      - name: testuser
+        password: $6$rounds=100000$/SK7so1fc7j96kpp$hGBMwK/.IWwpyLMCd94hVqVdbO78aooIEqWfNAfaTfF6QfM/.rcjC90twEHMSew7XV4EhS53j2PYsmKf.qjYl.
+        groups: wheel
   roles:
     - opuk.common
