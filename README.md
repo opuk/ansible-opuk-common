@@ -39,4 +39,4 @@ You may want to consider putting your users in a group_vars files instead.
 License
 -------
 
-BSD
+GPLv3
