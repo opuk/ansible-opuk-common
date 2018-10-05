@@ -1,6 +1,13 @@
 ---
 # tasks file for opuk.common
 
+- name: sanity check users
+  assert:
+    that:
+      - item.pubkey is defined
+    msg: a pubkey needs to be set for all users
+  with_items: "{{ users | default([]) }}"
+
 - name: install common packages
   package: 
     name: "{{ item }}" 
@@ -16,9 +23,15 @@
 - name: create users
   user: 
     name: "{{ item.name }}"
-    password: "{{ item.password }}"
+    password: "{{ item.password | default('!!') }}"
+    update_password: on_create
     groups: "{{ item.groups | default() }}"
   with_items: "{{ users | default([]) }}"
 
+- name: distribute ssh key
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ lookup('file', item.pubkey) }}"
+  with_items: "{{ users | default([]) }}"
  
 
