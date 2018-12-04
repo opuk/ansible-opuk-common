@@ -3,7 +3,7 @@
   {{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_architecture }}
   
   fqdn: {{ inventory_hostname }} ({{ ansible_default_ipv4.address }})
-  selinux: {{ ansible_selinux.config_mode }}
+  selinux: {{ ansible_selinux.config_mode || ansible_selinux.status }}
   memory: {{ ansible_memtotal_mb }}
   cpu count: {{ ansible_processor_count }} cores: {{ ansible_processor_cores }} tpc: {{ ansible_processor_threads_per_core }} vcpus: {{ ansible_processor_vcpus }}
 
