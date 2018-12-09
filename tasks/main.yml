@@ -15,7 +15,7 @@
   with_items:
     - libselinux-python
     - vim-enhanced
-  when: ansible_distribution: RedHat
+  when: ansible_distribution == "RedHat"
 
 - name: set motd
   template: src=motd.j2 dest=/etc/motd
@@ -28,7 +28,7 @@
     update_password: on_create
     groups: "{{ item.groups | default() }}"
   with_items: "{{ users | default([]) }}"
-  when: ansible_distribution: RedHat
+  when: ansible_distribution == "RedHat"
 
 - name: distribute ssh key
   authorized_key:
