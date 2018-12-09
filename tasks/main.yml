@@ -8,13 +8,14 @@
     msg: a pubkey needs to be set for all users
   with_items: "{{ users | default([]) }}"
 
-- name: install common packages
+- name: install common el packages
   package: 
     name: "{{ item }}" 
     state: present
   with_items:
     - libselinux-python
     - vim-enhanced
+  when: ansible_distribution: RedHat
 
 - name: set motd
   template: src=motd.j2 dest=/etc/motd
@@ -27,6 +28,7 @@
     update_password: on_create
     groups: "{{ item.groups | default() }}"
   with_items: "{{ users | default([]) }}"
+  when: ansible_distribution: RedHat
 
 - name: distribute ssh key
   authorized_key:
