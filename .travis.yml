@@ -5,11 +5,11 @@ services:
 
 before_install:
   # Fetch base image and build new container
-  - sudo docker pull docker.io/opuk/ansible-tester
+  - sudo docker pull quay.io/opuk/ansible-tester
 
 script:
   # Run container in detached state
-  - sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/opuk.common:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro docker.io/opuk/ansible-tester /usr/lib/systemd/systemd > /tmp/container_id
+  - sudo docker run --detach --privileged --volume="${PWD}":/etc/ansible/roles/opuk.common:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro quay.io/opuk/ansible-tester /usr/lib/systemd/systemd > /tmp/container_id
   # Check syntax of ansible playbook
   - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/opuk.common/tests/test.yml --syntax-check
   # Run ansible playbook
