@@ -8,9 +8,9 @@
       - name: testuser
         password: $6$rounds=100000$/SK7so1fc7j96kpp$hGBMwK/.IWwpyLMCd94hVqVdbO78aooIEqWfNAfaTfF6QfM/.rcjC90twEHMSew7XV4EhS53j2PYsmKf.qjYl.
         groups: wheel
-        pubkey: /etc/motd
+        pubkey: ~/.ssh/testkey.pub
       - name: testuser2
         password: $6$rounds=100000$/SK7so1fc7j96kpp$hGBMwK/.IWwpyLMCd94hVqVdbO78aooIEqWfNAfaTfF6QfM/.rcjC90twEHMSew7XV4EhS53j2PYsmKf.qjYl. 
-        pubkey: /etc/hosts
+        pubkey: ~/.ssh/testkey.pub
   roles:
     - opuk.common
